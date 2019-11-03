@@ -21,7 +21,7 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
 
-## How to set up
+## How to set up (locally)
 Prepare your .env file there with database connection and other settings
 - Run "composer install" command
 - Run "php artisan migrate --seed" command. Notice: seed is important, because it will create the first admin user for you.
@@ -38,3 +38,9 @@ Notice: we use CKEditor fields, there are a few more commands to launch for Lar
 - php artisan vendor:publish --tag=lfm_public
 
 
+## How to set up using docker
+- docker-compose build
+- docker-compose up -d
+
+- you can reach the new app on https://localhost:8080 
+as indicated in your .env file

@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 
 networks:
   laravel:
@@ -27,9 +27,9 @@ services:
       - "3306:3306"
     environment:
       MYSQL_DATABASE: talk_project
-      MYSQL_USER: root
-      MYSQL_PASSWORD: UPROAR2019!
-      MYSQL_ROOT_PASSWORD: UPROAR2019!
+      MYSQL_USER: homestead
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     networks:

@@ -77,10 +77,6 @@
                            </div>
                         </div>
 
-                            <div class="form-group row">
-                                
-                            </div>
-
 
                     </form>
                 </div>

@@ -67,6 +67,9 @@
                                     {{ __('Register') }}
                                 </button>
                             </div>
+                            <div class="col-md-2 ">
+                                <a href="{{ url('/login/google') }}" class="btn btn-google"> Login via Google</a>       
+                           </div>
                         </div>
                     </form>
                 </div>

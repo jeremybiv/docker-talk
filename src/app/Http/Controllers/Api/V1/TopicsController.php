@@ -18,7 +18,13 @@ class TopicsController extends Controller
     public function index()
     {
         $dateN = $this->getNextTalk();
-        return new TopicResource( Topic::where('date','=',$dateN)->get());
+        return new TopicResource( Topic::where('date','=',$dateN)->where('status','=',1)->get());
+    }
+
+    public function drafts()
+    {
+        $dateN = $this->getNextTalk();
+        return new TopicResource( Topic::where('status','=',0)->get());
     }
 
     private function getNextTalk() {
@@ -31,7 +37,7 @@ class TopicsController extends Controller
             if( (int) $now->month % 2 == 0)
                 $dateTalk = new Carbon("first tuesday of ".date("Y")."-".($now->month + 2));
             else {
-                new Carbon("first tuesday of next month");
+                $dateTalk = new Carbon("first tuesday of next month");
             }
         }
         return( $dateTalk->toDateString());

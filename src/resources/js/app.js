@@ -18,10 +18,6 @@ import 'shards-ui/dist/css/shards.css'
 
 Vue.use(ShardsVue);
 
-// /Vue.component('example-component', require('./components/ExampleComponent.vue'));
-
-Vue.component('register', require('./components/register.vue'));
-
 const app = new Vue({
     el: '#app'
 });
