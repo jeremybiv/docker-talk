@@ -73,16 +73,15 @@ RUN composer install --no-scripts --no-autoloader && \
     composer clear-cache
 COPY src ./
 RUN composer dump-autoload --no-scripts --no-dev --optimize
+
 # Cleanup dev dependencies
 RUN apk del -f .build-deps
-
-
 RUN php artisan config:cache
 
 RUN php artisan vendor:publish --tag=lfm_config
 RUN php artisan vendor:publish --tag=lfm_public
 
-#RUN php artisan key:generate
+RUN php artisan key:generate
 #RUN php artisan migrate --seed
 # RUN php artisan passport:install
 RUN npm install

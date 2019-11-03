@@ -21,26 +21,30 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
 
-## How to set up (locally)
-Prepare your .env file there with database connection and other settings
-- Run "composer install" command
-- Run "php artisan migrate --seed" command. Notice: seed is important, because it will create the first admin user for you.
-- Run "php artisan key:generate" command.
-- Run "php artisan passport:install" command.
-- Run "npm install" command.
-- Run "npm run dev" command.
-And that's it, go to your domain and login:
-Email: admin@neighbourly.com
-Password: password
+##App description
+Lightning talks are run on a bi​-monthly basis at Stuff NZ within the Product division. Every two months, team members will propose topics they would like to share by submitting a topic and synopsis to the organizing committee.
+From these submissions, the organizing committee will select THREE of the most interesting topics.
+These sessions are run on the first Tuesday of every even ​month (e.g. February, April, ..., December). OBJECTIVE
 
-Notice: we use CKEditor fields, there are a few more commands to launch for Laravel Filemanager package:
-- php artisan vendor:publish --tag=lfm_config
-- php artisan vendor:publish --tag=lfm_public
+## How to set up the app using docker
+Prepare your .env file there with database connection and other settings especially :
+- GOOGLE_*
+- MAIL_*
 
-
-## How to set up using docker
 - docker-compose build
+- docker-compose exec php php artisan migrate --seed
+- docker-compose exec php php artisan passport:install
+
 - docker-compose up -d
 
 - you can reach the new app on https://localhost:8080 
 as indicated in your .env file
+
+And that's it, go to your domain and login as an admin :
+Email: admin@neighbourly.com
+Password: password
+
+OR register :
+https://localhost:8080/register
+
+
