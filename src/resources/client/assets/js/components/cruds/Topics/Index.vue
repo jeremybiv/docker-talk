@@ -71,7 +71,6 @@ export default {
                 
                 { title: 'Description', field: 'description', sortable: true },
                
-            { title: 'Actions', tdComp: DatatableActions, visible: true, thClass: 'text-right', tdClass: 'text-right', colStyle: 'width: 130px;' }
             ],
             query: { sort: 'id', order: 'desc' },
             xprops: {

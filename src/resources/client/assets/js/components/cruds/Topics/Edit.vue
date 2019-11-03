@@ -84,14 +84,14 @@
                                         >
                                     Save
                                 </vue-button-spinner>
-                                <vue-button-spinner
+                                <button
                                 @click.prevent="submitForm(true)"
-                                        class="btn btn-primary btn-alert btn-sm"
+                                        class="publish btn btn-primary btn-success btn-sm"
                                         :isLoading="loading"
                                         :disabled="loading"
                                         >
                                     Publish
-                                </vue-button-spinner>
+                                </button>
                             </div>
                         </div>
                     </form>
@@ -111,6 +111,7 @@ export default {
             options : {
                 format: 'YYYY-MM-DD',
                 locale: 'en',
+                useCurrent: false,
                 enabledDates :  this.getFutureTuesday()
             }
         } 
@@ -152,7 +153,10 @@ export default {
                 this.setStatus(1);
             this.updateData()
                 .then(() => {
-                    this.$router.push({ name: 'topics.index' })
+                     if(publish)
+                        this.$router.push({ name: 'topics.drafts' })
+                    else
+                        this.$router.push({ name: 'topics.index' })
                     this.$eventHub.$emit('update-success')
                 })
                 .catch((error) => {
@@ -215,5 +219,8 @@ export default {
 
 
 <style scoped>
-
+button.publish {
+    margin-left:20px;
+    display:block;
+}
 </style>

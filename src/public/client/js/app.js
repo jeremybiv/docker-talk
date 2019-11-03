@@ -1265,6 +1265,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             options: {
                 format: 'YYYY-MM-DD',
                 locale: 'en',
+                useCurrent: false,
                 enabledDates: this.getFutureTuesday()
             }
         };
@@ -1299,7 +1300,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             var _this = this;
 
             this.storeData().then(function () {
-                _this.$router.push({ name: 'topics.index' });
+                _this.$router.push({ name: 'topics.drafts' });
                 _this.$eventHub.$emit('create-success');
             }).catch(function (error) {
                 console.error(error);
@@ -1314,12 +1315,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             var t = 0;
             var months = [];
             var monthsnYear = [];
+
             for (i = m; i <= m + 6; i++) {
                 if (i < 12 && i % 2 == 1) months.push(i);
             }
             // get also all tuesday for next year
             if (m > 6) {
-                for (i = 0; i <= 12 - m; i++) {
+                for (i = 0; i <= 13 - m; i++) {
                     if (i < 12 && i % 2 == 1) monthsnYear.push(i);
                 }
             }
@@ -1476,14 +1478,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            columns: [{ title: '#', field: 'id', sortable: true, colStyle: 'width: 50px;' }, { title: 'Subject', field: 'subject', sortable: true }, { title: 'Description', field: 'description',
-                "aoColumnDefs": [{ "aTargets": [2],
-                    "sType": "html",
-                    "fnRender": function fnRender(o, val) {
-                        return $("<div/>").html(o.aData[2]).text();
-                    }
-                }],
-                sortable: true }, { title: 'Actions', tdComp: __WEBPACK_IMPORTED_MODULE_1__dtmodules_DatatableActions___default.a, visible: true, thClass: 'text-right', tdClass: 'text-right', colStyle: 'width: 130px;' }],
+            columns: [{ title: '#', field: 'id', sortable: true, colStyle: 'width: 50px;' }, { title: 'Subject', field: 'subject', sortable: true }, { title: 'Description', field: 'description', sortable: true }, { title: 'Actions', tdComp: __WEBPACK_IMPORTED_MODULE_1__dtmodules_DatatableActions___default.a, visible: true, thClass: 'text-right', tdClass: 'text-right', colStyle: 'width: 130px;' }],
+            "aoColumnDefs": [{
+                "aTargets": [3],
+                "mRender": function mRender(data, type, full) {
+                    return $("<div/>").html(data).text();
+                }
+            }],
             query: { sort: 'id', order: 'desc' },
             xprops: {
                 module: 'TopicsDrafts',
@@ -1637,6 +1638,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             options: {
                 format: 'YYYY-MM-DD',
                 locale: 'en',
+                useCurrent: false,
                 enabledDates: this.getFutureTuesday()
             }
         };
@@ -1679,7 +1681,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
             if (publish) this.setStatus(1);
             this.updateData().then(function () {
-                _this.$router.push({ name: 'topics.index' });
+                if (publish) _this.$router.push({ name: 'topics.drafts' });else _this.$router.push({ name: 'topics.index' });
                 _this.$eventHub.$emit('update-success');
             }).catch(function (error) {
                 console.error(error);
@@ -1856,7 +1858,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            columns: [{ title: '#', field: 'id', sortable: true, colStyle: 'width: 50px;' }, { title: 'Subject', field: 'subject', sortable: true }, { title: 'Description', field: 'description', sortable: true }, { title: 'Actions', tdComp: __WEBPACK_IMPORTED_MODULE_1__dtmodules_DatatableActions___default.a, visible: true, thClass: 'text-right', tdClass: 'text-right', colStyle: 'width: 130px;' }],
+            columns: [{ title: '#', field: 'id', sortable: true, colStyle: 'width: 50px;' }, { title: 'Subject', field: 'subject', sortable: true }, { title: 'Description', field: 'description', sortable: true }],
             query: { sort: 'id', order: 'desc' },
             xprops: {
                 module: 'TopicsIndex',
@@ -2747,7 +2749,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -2807,7 +2809,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\nbutton.publish[data-v-2cf61c10] {\n    margin-left:20px;\n    display:block;\n}\n", ""]);
 
 // exports
 
@@ -2972,7 +2974,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -3047,7 +3049,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -24505,9 +24507,10 @@ var render = function() {
                         ),
                         _vm._v(" "),
                         _c(
-                          "vue-button-spinner",
+                          "button",
                           {
-                            staticClass: "btn btn-primary btn-alert btn-sm",
+                            staticClass:
+                              "publish btn btn-primary btn-success btn-sm",
                             attrs: {
                               isLoading: _vm.loading,
                               disabled: _vm.loading

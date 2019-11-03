@@ -92,6 +92,7 @@ export default {
             options : {
                 format: 'YYYY-MM-DD',
                 locale: 'en',
+                useCurrent: false,
                 enabledDates :  this.getFutureTuesday()
             }
         } 
@@ -127,7 +128,7 @@ export default {
         submitForm() {
             this.storeData()
                 .then(() => {
-                    this.$router.push({ name: 'topics.index' })
+                    this.$router.push({ name: 'topics.drafts' })
                     this.$eventHub.$emit('create-success')
                 })
                 .catch((error) => {
@@ -144,13 +145,14 @@ export default {
             var t= 0;
             var months = [];
             var monthsnYear = [];
+            
             for (i = m; i <= (m+6); i++) {
                 if(i<12 && i %2==1)
-                months.push(i);    
+                    months.push(i);    
             }
             // get also all tuesday for next year
             if(m>6) {
-                for (i = 0; i <= (12-m); i++) {
+                for (i = 0; i <= (13-m); i++) {
                 if(i<12 && i %2==1)
                     monthsnYear.push(i);    
                 }
