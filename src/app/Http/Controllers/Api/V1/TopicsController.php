@@ -24,7 +24,7 @@ class TopicsController extends Controller
     public function drafts()
     {
         $user = auth('api')->user();
-        return new TopicResource( Topic::where('user_id','=',$user->id)->get());
+        return new TopicResource( Topic::where('user_id','=',$user->id)->where('status','=',0)->get());
     }
 
     private function getNextTalk() {

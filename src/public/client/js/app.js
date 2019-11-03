@@ -1677,12 +1677,24 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         submitForm: function submitForm() {
             var _this = this;
 
-            var publish = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-
-            if (publish) this.setStatus(1);
+            console.log('submitForm');
             this.updateData().then(function () {
                 if (publish) _this.$router.push({ name: 'topics.drafts' });else _this.$router.push({ name: 'topics.index' });
                 _this.$eventHub.$emit('update-success');
+            }).catch(function (error) {
+                console.error(error);
+            });
+        },
+        publish: function publish() {
+            var _this2 = this;
+
+            console.log('publish');
+            this.setStatus(1);
+            this.updateData().then(function () {
+
+                _this2.$router.push({ name: 'topics.drafts' });
+
+                _this2.$eventHub.$emit('update-success');
             }).catch(function (error) {
                 console.error(error);
             });
@@ -24369,172 +24381,150 @@ var render = function() {
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-xs-12" }, [
             _c(
-              "form",
-              {
-                attrs: { novalidate: "" },
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    return _vm.submitForm($event)
-                  }
-                }
-              },
+              "div",
+              { staticClass: "box" },
               [
-                _c(
-                  "div",
-                  { staticClass: "box" },
-                  [
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "box-body" },
-                      [_c("back-buttton")],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("bootstrap-alert"),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "box-body" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", { attrs: { for: "subject" } }, [
-                          _vm._v("Subject *")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            name: "subject",
-                            placeholder: "Enter Subject *"
-                          },
-                          domProps: { value: _vm.item.subject },
-                          on: { input: _vm.updateSubject }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "form-group" },
-                        [
-                          _c("label", { attrs: { for: "description" } }, [
-                            _vm._v("Description *")
-                          ]),
-                          _vm._v(" "),
-                          _c("vue-ckeditor", {
-                            attrs: {
-                              name: "description",
-                              id: "description",
-                              value: _vm.item.description
-                            },
-                            on: { input: _vm.updateDescription }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", { attrs: { for: "email" } }, [
-                          _vm._v("Email *")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "email",
-                            name: "email",
-                            placeholder: "Enter Email *"
-                          },
-                          domProps: { value: _vm.item.email },
-                          on: { input: _vm.updateEmail }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "form-group" },
-                        [
-                          _c("label", { attrs: { for: "date" } }, [
-                            _vm._v("Date *")
-                          ]),
-                          _vm._v(" "),
-                          _c("date-picker", {
-                            attrs: {
-                              value: _vm.item.date,
-                              config: _vm.options,
-                              name: "date",
-                              placeholder: "Enter Date *"
-                            },
-                            on: { "dp-change": _vm.updateDate }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "hidden",
-                            max: "1",
-                            name: "status",
-                            placeholder: "Enter Status"
-                          },
-                          domProps: { value: _vm.item.status },
-                          on: { input: _vm.updateStatus }
-                        })
-                      ])
+                _vm._m(1),
+                _vm._v(" "),
+                _c("div", { staticClass: "box-body" }, [_c("back-buttton")], 1),
+                _vm._v(" "),
+                _c("bootstrap-alert"),
+                _vm._v(" "),
+                _c("div", { staticClass: "box-body" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "subject" } }, [
+                      _vm._v("Subject *")
                     ]),
                     _vm._v(" "),
+                    _c("input", {
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        name: "subject",
+                        placeholder: "Enter Subject *"
+                      },
+                      domProps: { value: _vm.item.subject },
+                      on: { input: _vm.updateSubject }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "form-group" },
+                    [
+                      _c("label", { attrs: { for: "description" } }, [
+                        _vm._v("Description *")
+                      ]),
+                      _vm._v(" "),
+                      _c("vue-ckeditor", {
+                        attrs: {
+                          name: "description",
+                          id: "description",
+                          value: _vm.item.description
+                        },
+                        on: { input: _vm.updateDescription }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "email" } }, [
+                      _vm._v("Email *")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "email",
+                        name: "email",
+                        placeholder: "Enter Email *"
+                      },
+                      domProps: { value: _vm.item.email },
+                      on: { input: _vm.updateEmail }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "form-group" },
+                    [
+                      _c("label", { attrs: { for: "date" } }, [
+                        _vm._v("Date *")
+                      ]),
+                      _vm._v(" "),
+                      _c("date-picker", {
+                        attrs: {
+                          value: _vm.item.date,
+                          config: _vm.options,
+                          name: "date",
+                          placeholder: "Enter Date *"
+                        },
+                        on: { "dp-change": _vm.updateDate }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("input", {
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "hidden",
+                        max: "1",
+                        name: "status",
+                        placeholder: "Enter Status"
+                      },
+                      domProps: { value: _vm.item.status },
+                      on: { input: _vm.updateStatus }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "box-footer" },
+                  [
                     _c(
-                      "div",
-                      { staticClass: "box-footer" },
+                      "vue-button-spinner",
+                      {
+                        staticClass: "btn btn-primary btn-sm",
+                        attrs: {
+                          isLoading: _vm.loading,
+                          disabled: _vm.loading
+                        },
+                        on: { click: _vm.submitForm }
+                      },
                       [
-                        _c(
-                          "vue-button-spinner",
-                          {
-                            staticClass: "btn btn-primary btn-sm",
-                            attrs: {
-                              isLoading: _vm.loading,
-                              disabled: _vm.loading
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n                                Save\n                            "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass:
-                              "publish btn btn-primary btn-success btn-sm",
-                            attrs: {
-                              isLoading: _vm.loading,
-                              disabled: _vm.loading
-                            },
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                return _vm.submitForm(true)
-                              }
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n                                Publish\n                            "
-                            )
-                          ]
+                        _vm._v(
+                          "\n                                Save\n                            "
                         )
-                      ],
-                      1
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "publish btn btn-primary btn-success btn-sm",
+                        attrs: {
+                          type: "button",
+                          isLoading: _vm.loading,
+                          disabled: _vm.loading
+                        },
+                        on: { click: _vm.publish }
+                      },
+                      [
+                        _vm._v(
+                          "\n                                Publish\n                            "
+                        )
+                      ]
                     )
                   ],
                   1
                 )
-              ]
+              ],
+              1
             )
           ])
         ])

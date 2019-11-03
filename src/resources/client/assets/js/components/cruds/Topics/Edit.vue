@@ -7,7 +7,7 @@
         <section class="content">
             <div class="row">
                 <div class="col-xs-12">
-                    <form @submit.prevent="submitForm" novalidate>
+                    
                         <div class="box">
                             <div class="box-header with-border">
                                 <h3 class="box-title">Edit</h3>
@@ -77,24 +77,24 @@
                             </div>
 
                             <div class="box-footer">
-                                <vue-button-spinner
+                                <vue-button-spinner @click="submitForm"
                                         class="btn btn-primary btn-sm"
                                         :isLoading="loading"
                                         :disabled="loading"
                                         >
                                     Save
                                 </vue-button-spinner>
-                                <button
-                                @click.prevent="submitForm(true)"
+                                <vue-button-spinner
+                                @click="publish"
                                         class="publish btn btn-primary btn-success btn-sm"
                                         :isLoading="loading"
                                         :disabled="loading"
                                         >
                                     Publish
-                                </button>
+                                </vue-button-spinner>
                             </div>
                         </div>
-                    </form>
+                    
                 </div>
             </div>
         </section>
@@ -148,15 +148,22 @@ export default {
         updateStatus(e) {
             this.setStatus(e.target.value)
         },
-        submitForm(publish = false) {
-            if(publish)
-                this.setStatus(1);
+        submitForm() {
             this.updateData()
                 .then(() => {
-                     if(publish)
-                        this.$router.push({ name: 'topics.drafts' })
-                    else
                         this.$router.push({ name: 'topics.index' })
+                    this.$eventHub.$emit('update-success')
+                })
+                .catch((error) => {
+                    console.error(error)
+                })
+        },
+        publish() {
+            console.log('publish');
+            this.setStatus(1);
+            this.updateData()
+                .then(() => {
+                    this.$router.push({ name: 'topics.drafts' })
                     this.$eventHub.$emit('update-success')
                 })
                 .catch((error) => {
@@ -179,7 +186,7 @@ export default {
             }
             // get also all tuesday for next year
             if(m>6) {
-                for (i = 0; i <= (12-m); i++) {
+                for (i = 0; i <= (13-m); i++) {
                 if(i<12 && i %2==1)
                     monthsnYear.push(i);    
                 }
@@ -221,6 +228,5 @@ export default {
 <style scoped>
 button.publish {
     margin-left:20px;
-    display:block;
 }
 </style>
