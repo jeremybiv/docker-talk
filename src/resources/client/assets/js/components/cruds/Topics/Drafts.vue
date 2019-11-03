@@ -68,9 +68,7 @@ export default {
             columns: [
                 { title: '#', field: 'id', sortable: true, colStyle: 'width: 50px;' },
                 { title: 'Subject', field: 'subject', sortable: true },
-                
-                { title: 'Email', field: 'email', sortable: true },
-                { title: 'Date', field: 'date', sortable: true },
+                { title: 'Description', field: 'description', sortable: true },
                 
                 { title: 'Actions', tdComp: DatatableActions, visible: true, thClass: 'text-right', tdClass: 'text-right', colStyle: 'width: 130px;' }
             ],

@@ -68,7 +68,7 @@
                                 </button>
                             </div>
                             <div class="col-md-2 ">
-                                <a href="{{ url('/login/google') }}" class="btn btn-google"> Login via Google</a>       
+                                <a href="{{ url('/login/google') }}" class="btn btn-google"> Register via Google</a>       
                            </div>
                         </div>
                     </form>
