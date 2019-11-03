@@ -76,6 +76,7 @@ RUN composer dump-autoload --no-scripts --no-dev --optimize
 
 # Cleanup dev dependencies
 RUN apk del -f .build-deps
+
 RUN php artisan config:cache
 
 RUN php artisan vendor:publish --tag=lfm_config

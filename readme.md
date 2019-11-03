@@ -21,8 +21,8 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
 
-##App description
-Lightning talks are run on a bi​-monthly basis at Stuff NZ within the Product division. Every two months, team members will propose topics they would like to share by submitting a topic and synopsis to the organizing committee.
+## App description
+Lightning talks are run on a bi​-monthly basis at XXX NZ within the Product division. Every two months, team members will propose topics they would like to share by submitting a topic and synopsis to the organizing committee.
 From these submissions, the organizing committee will select THREE of the most interesting topics.
 These sessions are run on the first Tuesday of every even ​month (e.g. February, April, ..., December). OBJECTIVE
 
@@ -47,4 +47,7 @@ Password: password
 OR register :
 https://localhost:8080/register
 
+## cloud native architecture AWS  to deploy and run it
+
+https://s3.us-east-2.amazonaws.com/cloudformation-templates-us-east-2/LAMP_Single_Instance.template
 
