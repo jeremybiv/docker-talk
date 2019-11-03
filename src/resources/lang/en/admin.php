@@ -35,6 +35,7 @@ return [
 	],
 	
 	'topic' => [
+		'drafts' => 'My drafts topics',
 		'title' => 'Topic',
 		'fields' => [
 			'subject' => 'Subject',

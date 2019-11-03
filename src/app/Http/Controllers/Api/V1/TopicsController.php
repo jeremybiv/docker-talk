@@ -23,8 +23,8 @@ class TopicsController extends Controller
 
     public function drafts()
     {
-        $dateN = $this->getNextTalk();
-        return new TopicResource( Topic::where('status','=',0)->get());
+        $user = auth('api')->user();
+        return new TopicResource( Topic::where('user_id','=',$user->id)->get());
     }
 
     private function getNextTalk() {

@@ -10,6 +10,7 @@ import RolesSingle from './modules/Roles/single'
 import UsersIndex from './modules/Users'
 import UsersSingle from './modules/Users/single'
 import TopicsIndex from './modules/Topics'
+import TopicsDrafts from './modules/Topics/drafts'
 import TopicsSingle from './modules/Topics/single'
 
 Vue.use(Vuex)
@@ -28,6 +29,7 @@ export default new Vuex.Store({
         UsersIndex,
         UsersSingle,
         TopicsIndex,
+        TopicsDrafts,
         TopicsSingle,
     },
     strict: debug,

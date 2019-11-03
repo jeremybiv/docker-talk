@@ -68,13 +68,22 @@ export default {
             columns: [
                 { title: '#', field: 'id', sortable: true, colStyle: 'width: 50px;' },
                 { title: 'Subject', field: 'subject', sortable: true },
-                { title: 'Description', field: 'description', sortable: true },
+                { title: 'Description', field: 'description', 
+                "aoColumnDefs": [ 
+                    { "aTargets": [2], 
+                    "sType": "html", 
+                    "fnRender": function(o, val) { 
+                        return $("<div/>").html(o.aData[2]).text();
+                    } 
+                    }
+                ],
+                 sortable: true },
                 
                 { title: 'Actions', tdComp: DatatableActions, visible: true, thClass: 'text-right', tdClass: 'text-right', colStyle: 'width: 130px;' }
             ],
             query: { sort: 'id', order: 'desc' },
             xprops: {
-                module: 'TopicsIndex',
+                module: 'TopicsDrafts',
                 route: 'topics',
                 permission_prefix: 'topic_'
             }
@@ -88,7 +97,7 @@ export default {
         this.resetState()
     },
     computed: {
-        ...mapGetters('TopicsIndex', ['data', 'total', 'loading', 'relationships']),
+        ...mapGetters('TopicsDrafts', ['data', 'total', 'loading', 'relationships']),
     },
     watch: {
         query: {
@@ -99,7 +108,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions('TopicsIndex', ['fetchData', 'setQuery', 'resetState']),
+        ...mapActions('TopicsDrafts', ['fetchData', 'setQuery', 'resetState']),
     }
 }
 </script>

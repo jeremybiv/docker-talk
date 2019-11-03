@@ -44,8 +44,8 @@
             </li>
             <li v-if="$can('topic_access')">
                 <router-link :to="{ name: 'topics.drafts' }">
-                    <i class="fa fa-toggle-right"></i>
-                    <span>My @lang('admin.topic.title')</span>
+                    <i class="fa fa-toggle-right"></i> 
+                    <span>@lang('admin.topic.drafts')</span>
                 </router-link>
             </li>
 
