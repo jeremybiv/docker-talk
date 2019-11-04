@@ -37,7 +37,7 @@ Prepare your .env file there with database connection and other settings especia
 
 - docker-compose up -d
 
-- you can reach the new app on https://localhost:8080 
+- you can reach the new app on http://localhost:8080 
 as indicated in your .env file
 
 And that's it, go to your domain and login as an admin :
@@ -45,7 +45,7 @@ Email: admin@neighbourly.com
 Password: password
 
 OR register :
-https://localhost:8080/register
+http://localhost:8080/register
 
 ## cloud native architecture AWS  to deploy and run it
 

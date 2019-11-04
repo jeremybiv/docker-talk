@@ -48,10 +48,14 @@ class TopicsController extends Controller
         if (Gate::denies('topic_view')) {
             return abort(401);
         }
+        $user = auth('api')->user();
 
         $topic = Topic::with([])->findOrFail($id);
 
-        return new TopicResource($topic);
+        if($topic->user_id == $user->id)
+            return new TopicResource($topic);
+        else 
+            return abort(401);
     }
 
     public function store(StoreTopicsRequest $request)

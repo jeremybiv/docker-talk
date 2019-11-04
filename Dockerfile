@@ -8,9 +8,7 @@ RUN apk add --no-cache --virtual .build-deps \
     curl-dev \
     imagemagick-dev \
     libtool \
-    libxml2-dev \
-    postgresql-dev \
-    sqlite-dev
+    libxml2-dev
 
 # Install production dependencies
 RUN apk add --no-cache \
@@ -28,8 +26,6 @@ RUN apk add --no-cache \
     nodejs-npm \
     yarn \
     openssh-client \
-    postgresql-libs \
-    rsync \
     zlib-dev \
     libzip-dev
 
@@ -49,8 +45,6 @@ RUN docker-php-ext-install \
     iconv \
     pdo \
     pdo_mysql \
-    pdo_pgsql \
-    pdo_sqlite \
     pcntl \
     xml \
     gd \
