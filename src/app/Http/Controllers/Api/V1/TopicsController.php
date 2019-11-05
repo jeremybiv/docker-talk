@@ -18,7 +18,7 @@ class TopicsController extends Controller
     public function index()
     {
         $dateN = $this->getNextTalk();
-        return new TopicResource( Topic::where('date','=',$dateN)->where('status','=',1)->get());
+        return new TopicResource( Topic::where('date','=',$dateN)->published()->get());
     }
 
     public function drafts()
@@ -87,8 +87,6 @@ class TopicsController extends Controller
             $user = auth('api')->user();
             $user->notify(new TopicCreated($topic));
         }
-            
-
         return (new TopicResource($topic))
             ->response()
             ->setStatusCode(202);

@@ -77,7 +77,7 @@ class RegisterController extends Controller
     }
 
     /**
-     * Redirect the user to the GitHub authentication page.
+     * Redirect the user to the Google authentication page.
      *
      * @return \Illuminate\Http\Response
      */
@@ -87,16 +87,14 @@ class RegisterController extends Controller
     }
 
     /**
-     * Obtain the user information from GitHub.
+     * Obtain the user information from google.
      *
      * @return \Illuminate\Http\Response
      */
     public function handleProviderCallback()
     {
         $user = Socialite::driver('google')->user();
-        //$this->register($user);
-
-        // $user->token;
+ 
         $role =  Role::with([])->findOrFail(2); //default user role
        
         $user = User::create([

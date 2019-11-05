@@ -71,14 +71,9 @@ class Topic extends Model
 
     public function scopePublished($query)
     {
-        return $query->where('status', 1)::with([]);
+        return $query->where('status', 1);
     }
 
-    public function scopeNextTalk($query)
-    {
-        
-        return $query->where('date', )::with([]);
-    }
 
     public function user()
     {
